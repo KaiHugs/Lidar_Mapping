@@ -1,0 +1,63 @@
+project:
+  packs:
+    - pack: TexasInstruments::MSP432E4_DFP
+    - pack: ARM::CMSIS@5.9.0
+  setups:
+    - setup: Options for Target_1
+      processor:
+        fpu: sp
+      add-path:
+        - ../../../../../Keil_v5/ARM/ARMCLANG/include
+      debug: "on"
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:
+            - -xc++
+            - -std=c++03
+          ASM:
+            - -masm=auto
+          Link:
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+  groups:
+    - group: Source Group 1
+      files:
+        - file: PLL.c
+        - file: SysTick.c
+        - file: vl53l1_platform_2dx4.c
+        - file: VL53L1X_api.c
+        - file: onboardLEDs.c
+        - file: uart.c
+        - file: 2dx_studio_8c.c
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: TexasInstruments::Device:Startup

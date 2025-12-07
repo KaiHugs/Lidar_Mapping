@@ -1,0 +1,10 @@
+solution:
+  created-by: uv2csolution@1.5.0
+  created-for: CMSIS-Toolbox@2.4.0
+  compiler: AC6
+  target-types:
+    - type: Target_1
+      device: Texas Instruments::MSP432E401Y
+      optimize: debug
+  projects:
+    - project: 2dx_studio_8c.cproject.yml
